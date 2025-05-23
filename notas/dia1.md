@@ -503,7 +503,7 @@ Pero... el Oracle luego hay otro concepto diferente: SEGMENTO (SEGMENT)
 Un SEGMENT es un almacenamiento LÓGICO para guardar los datos de un objeto (una tabla, un índice, etc). 
 Un segmento lo puedo tener repartido en varios datafiles (físicos) y un datafile puede tener varios segmentos (lógicos).
 
-A su vez, está el concepto de EXTENT: UUn extent es un grupo de bloques de almacenamiento contiguos en un datafile.
+A su vez, está el concepto de EXTENT: Un extent es un grupo de bloques de almacenamiento contiguos en un datafile.
 
 BLOCK: Un bloque es la unidad de almacenamiento más pequeña que maneja Oracle.. en otras BBDD le llamamos PÁGINA.
 los bloques tienen un tamaño FIJO, que se configura al crear la BBDD. Por defecto en Oracle es de 8Kb... pero puedo cambiarlo.
@@ -555,8 +555,8 @@ Qué hay en un bloque de datos?
 
     DATOS:
     Bytes que ocupa | si está vivo |... |Datos
-    24              |NO            |... |Felipe33Madrid
-    Menchu41Barcelona
+    24              |NO            |... |Felipe44Madrid
+    Menchu56Barcelona
     Pepe99Valencia
 
 Eso si... ese bloque de datos, se almacena en formato binario.
