@@ -1,0 +1,7 @@
+3.250.179.235
+
+ 
+sys/P4ssW0rd2O25@ORCLCDB
+ 
+pdbadmin/P4ssW0rd2O25@ORCLPDB1
+ 
