@@ -82,9 +82,9 @@ END;
 
 
 -- Índices
-CREATE INDEX peliculas_tematica_idx ON peliculas (tematica);
-CREATE INDEX peliculas_director_idx ON peliculas (director);
-CREATE INDEX peliculas_fecha_idx ON peliculas (fecha);
+--CREATE INDEX peliculas_tematica_idx ON peliculas (tematica);
+--CREATE INDEX peliculas_director_idx ON peliculas (director);
+--CREATE INDEX peliculas_fecha_idx ON peliculas (fecha);
 
 -- Tabla visualizaciones particionada por rango
 CREATE TABLE visualizaciones (
@@ -101,7 +101,7 @@ PARTITION BY RANGE (fecha) (
 );
 
 -- Índice adicional si necesitas buscar por usuario
-CREATE INDEX visualizaciones_usuario_idx ON visualizaciones(usuario);
+--CREATE INDEX visualizaciones_usuario_idx ON visualizaciones(usuario);
 
 
 SELECT COUNT(*) FROM USUARIOS;
