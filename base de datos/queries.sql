@@ -109,8 +109,32 @@ GROUP BY u.nombre;
 
 DESC v$buffer_pool_statistics;
 
-SELECT 
-1- (PHYSICAL_READS / (DB_BLOCK_GETS + CONSISTENT_GETS)) * 100 AS "Buffer Cache Hit Ratio"
+SELECT 1- (PHYSICAL_READS / (DB_BLOCK_GETS + CONSISTENT_GETS)) * 100 AS "Buffer Cache Hit Ratio"
 FROM v$buffer_pool_statistics;
 
+
+
+
+SELECT
+  s.owner,
+  s.object_name AS table,
+  s.object_type,
+  SUM(CASE WHEN s.statistic_name = 'logical reads' THEN s.value ELSE 0 END) AS logical_reads,
+  SUM(CASE WHEN s.statistic_name = 'physical reads' THEN s.value ELSE 0 END) AS physical_reads,
+  ROUND(
+    (1 - (SUM(CASE WHEN s.statistic_name = 'physical reads' THEN s.value ELSE 0 END) /
+           NULLIF(SUM(CASE WHEN s.statistic_name = 'logical reads' THEN s.value ELSE 0 END), 0))
+    ) * 100, 2
+  ) AS cache_hit_ratio_percent
+FROM
+  v$segment_statistics s
+WHERE
+  s.object_type = 'TABLE'
+GROUP BY
+  s.owner, s.object_name, s.object_type
+ORDER BY
+  table
+  ;
+
 -- RATIO de cache debe estar por encima de un 80% como poco... lo ideal es de un 90%
+
